@@ -8,6 +8,7 @@
 
 #import "MBHudDemoViewController.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+ATAdd.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface MBExample : NSObject
@@ -69,21 +70,37 @@
 - (void)indeterminateExample {
     // Show the HUD on the root view (self.view is a scrollable table view and thus not suitable,
     // as the HUD would move with the content as we scroll).
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-
-    // Fire off an asynchronous task, giving UIKit the opportunity to redraw wit the HUD added to the
-    // view hierarchy.
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-
-        // Do something useful in the background
-        [self doSomeWork];
-
-        // IMPORTANT - Dispatch back to the main thread. Always access UI
-        // classes (including MBProgressHUD) on the main thread.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hideAnimated:YES];
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+//
+//    // Fire off an asynchronous task, giving UIKit the opportunity to redraw wit the HUD added to the
+//    // view hierarchy.
+//    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+//
+//        // Do something useful in the background
+//        [self doSomeWork];
+//
+//        // IMPORTANT - Dispatch back to the main thread. Always access UI
+//        // classes (including MBProgressHUD) on the main thread.
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [hud hideAnimated:YES];
+//        });
+//    });
+//    [MBProgressHUD showWithCompletion:^(MBProgressHUD *hud) {
+//
+//    }];
+    [MBProgressHUD showToView:self.navigationController.view completion:^(MBProgressHUD *hud) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            
+            // Do something useful in the background
+            [self doSomeWork];
+            
+            // IMPORTANT - Dispatch back to the main thread. Always access UI
+            // classes (including MBProgressHUD) on the main thread.
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
         });
-    });
+    }];
 }
 
 - (void)labelExample {
