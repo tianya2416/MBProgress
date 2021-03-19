@@ -21,27 +21,27 @@
 /**
  显示Loding加载提示Hud, 禁用用户交可使用 hud.userInteractionEnabled = YES;
  */
-+ (instancetype)showMessage:(NSString *)message;
-+ (instancetype)showMessage:(NSString *)message toView:(UIView *)view;
-+ (instancetype)showWithCompletion:(void (^NS_NOESCAPE)(MBProgressHUD *hud))completion;
-+ (instancetype)showToView:(UIView *)view completion:(void (^NS_NOESCAPE)(MBProgressHUD *hud))completion;
-+ (instancetype)showMessage:(NSString *)message completion:(void (^NS_NOESCAPE)(MBProgressHUD *hud))completion;
-+ (instancetype)showMessage:(NSString *)message toView:(UIView *)view completion:(void (^NS_NOESCAPE)(MBProgressHUD *hud))completion;
++ (instancetype)showToast:(NSString *)message;
++ (instancetype)showToast:(NSString *)message toView:(UIView *)view;
+
+
++ (instancetype)showWithCompletion:(void (^)(MBProgressHUD *hud))completion;
++ (instancetype)showToView:(UIView *)view completion:(void (^)(MBProgressHUD *hud))completion;
+
++ (instancetype)showMessage:(NSString *)message completion:(void (^)(MBProgressHUD *hud))completion;
++ (instancetype)showMessage:(NSString *)message toView:(UIView *)view completion:(void (^)(MBProgressHUD *hud))completion;
 + (instancetype)graceShowMessage:(NSString *)message toView:(UIView *)view completion:(void (^)(MBProgressHUD *hud))completion;
-+ (instancetype)showMessage:(NSString *)message
-                     toView:(UIView *)view
-                  graceTime:(NSTimeInterval)gractTime
-             hideAfterDelay:(NSTimeInterval)delay
-                 completion:(void (^NS_NOESCAPE)(MBProgressHUD *hud))completion;
++ (instancetype)showMessage:(NSString *)message toView:(UIView *)view graceTime:(NSTimeInterval)gractTime hideAfterDelay:(NSTimeInterval)delay completion:(void (^)(MBProgressHUD *hud))completion;
 
 /**
  隐藏HUd
  */
 + (instancetype)hudForView:(UIView *)view;
-- (void)hideWithMessage:(NSString *)message completion:(MBProgressHUDCompletionBlock)completion;
-- (void)hideWithSuccess:(NSString *)message completion:(MBProgressHUDCompletionBlock)completion;
-- (void)hideWithFailure:(NSString *)message completion:(MBProgressHUDCompletionBlock)completion;
-- (void)hideWithAnimated:(BOOL)animated completion:(MBProgressHUDCompletionBlock)completion;
+
+- (void)hideWithAnimated:(BOOL)animated;
+- (void)hideWithMessage:(NSString *)message;
+- (void)hideWithSuccess:(NSString *)message;
+- (void)hideWithFailure:(NSString *)message;
 - (void)hideWithMessage:(NSString *)message
                   image:(UIImage *)image
                animated:(BOOL)animated
