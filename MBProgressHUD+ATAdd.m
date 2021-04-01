@@ -78,8 +78,8 @@
     hud.contentColor = [UIColor whiteColor];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    hud.bezelView.color = [UIColor colorWithWhite:0 alpha:0.7];
-    hud.bezelView.layer.cornerRadius = 4.0f;
+    hud.bezelView.color = [UIColor colorWithRed:83/255.0 green:83/255.0 blue:83/255.0 alpha:1.0];
+    hud.bezelView.layer.cornerRadius = 5.0f;
     hud.removeFromSuperViewOnHide = YES;
     hud.animationType = MBProgressHUDAnimationFade;
     if (gractTime > 0) {
@@ -144,6 +144,7 @@
     if (image) {
         self.customView = [[UIImageView alloc] initWithImage:image];
     }
+    self.margin = 10;
     self.detailsLabel.text = nil;
     self.mode = MBProgressHUDModeCustomView;
     [self setCompletionBlock:completion];

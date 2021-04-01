@@ -425,7 +425,15 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [MBProgressHUD showToast:@"----"];
+
+//    [MBProgressHUD showWithCompletion:^(MBProgressHUD *hud) {
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [hud hideWithMessage:@"message here"];
+//            });
+//    }];
+    [MBProgressHUD showMessage:@"message here" completion:^(MBProgressHUD *hud) {
+            
+    }];
 //    MBExample *example = self.examples[indexPath.section][indexPath.row];
 //#pragma clang diagnostic push
 //#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
